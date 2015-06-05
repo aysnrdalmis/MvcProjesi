@@ -1,0 +1,55 @@
+﻿<!--Her hangi bir model kullanmadık burada doğrulamayı kendimiz elle yapacağız-->
+@{
+    ViewBag.Title = "Log In";
+}
+<!--Layout sayfamızda sayfanın en alt kısmında scripts adlı bir sectionumuz tanımlanmıştı.
+    Script ve css kodlarımızı scripts sectionuna koyacağız.
+    Detaylı bilgi önceki yazılarımızda vardır.-->
+@section scripts{
+    <style type="text/css">
+        #formKapsayici {
+            box-shadow: 0 0 5px gray;
+            padding: 25px;
+            height: 500px;
+        }
+
+        #divSol, #divSag {
+            float: left;
+            margin-left: 25px;
+        }
+
+            #divSol *, #divSag * {
+                margin-top: 15px;
+            }
+
+        input[type="text"] {
+            width: 250px;
+        }
+
+        #btnSignIn {
+            /*clear komutu ile önceki divlerin sola yaslanarak sıralanmasında, butonun bu yaslanmaya
+            uymayıp alt satıra inmesini sağlıyoruz*/
+            clear: both;
+            display: block;
+            margin-left: 132px;
+        }
+
+        #divSonuc {
+            color: red;
+        }
+    </style>
+}
+<h2>Log In</h2>
+@using (Ajax.BeginForm("LoggIn", "Uyelik", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "divSonuc" }, new { id = "formKapsayici" }))
+{
+    <div id="divSol">
+        @Html.Label("E-mail address")<br />
+        @Html.Label("Password")
+    </div>
+    <div id="divSag">
+        : @Html.TextBox("txtPosta")<br />
+        : @Html.Password("pswSifre")
+    </div>
+    <input type="submit" value="Sign In" id="btnSignIn" />
+    <div id="divSonuc"></div>
+}

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<MvcProjesi.Data.Post>
+<h1>All Posts</h1>
+@{
+    //Veri kaynağımız liste olduğu için döngümüzü kuruyoruz.
+    foreach (var item in Model)
+    {
+        <div style="width:100%;margin-top:25px;box-shadow:0 0 5px gray;padding:25px;">
+            <!--Başlığı, büyük ve renkli görünsün diye, h3 tagı içerisine aldık-->
+            <h3 style="font-weight:bold;color:red">
+                @Html.DisplayFor(i => item.Title)
+            </h3>
+
+            <!--Başlıkla içerik arasına, dikey çizgi ekliyoruz.-->
+            <hr />
+
+            @Html.DisplayFor(i => item.Topic)
+            <hr />
+            <!--Tarih başlığını, tarih içeriğine bağlamak için Label kullandık.-->
+            @Html.Label("Date : ")
+
+            @Html.DisplayFor(i => item.Date)
+            <hr />
+            <h4>Writer</h4>
+
+            <!--Burada bir değişkende, ad ile soyadı birleştirip ekrana bastık.-->
+            @{string adSoyad = item.Member.Name + " " + item.Member.Surname;}
+            @Html.Label("Name-Surname: ")&nbsp;&nbsp;@adSoyad
+        </div>
+    }
+}

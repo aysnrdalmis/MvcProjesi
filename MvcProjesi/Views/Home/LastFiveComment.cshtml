@@ -1,0 +1,23 @@
+﻿<!--Modelimiz liste olarak geldiği için List<> içerisine aldık-->
+@model List<MvcProjesi.Data.Comment>
+<div style="border:1px solid red;padding:25px;text-align:center;">
+    <h2>Last Five Comment</h2>
+    @{
+        //Bu sefer de for döngüsünü kullandık.
+        for (int i = 0; i < Model.Count() - 1; i++)
+        {
+            //Burada her yorumun etrafına çerçeve attık
+            <div style="border:1px solid red">
+               
+                <h3>MemberInfo</h3>
+                Name : @Model[i].Member.Name<br />
+                Surname : @Model[i].Member.Surname<br />
+                <h3>Post Info</h3>
+                Title : @Html.ActionLink(@Model[i].Post.Title, "Post_Comment", new { yorumId = Model[i].CommentId })
+                <h3>Comment Topic</h3>
+                <p>@Model[i].Topic</p>
+                Date : @Model[i].Date
+            </div>
+        }
+    }
+</div>

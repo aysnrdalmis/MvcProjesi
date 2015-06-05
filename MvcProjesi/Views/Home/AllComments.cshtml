@@ -1,0 +1,23 @@
+﻿@model IEnumerable<MvcProjesi.Data.Comment>
+
+@{
+    ViewBag.Title = "AllComments";
+}
+
+<h2>AllComments</h2>
+
+@{
+    //Veri kaynağımız liste olduğu için döngümüzü kuruyoruz.
+    foreach (var item in Model)
+    {
+        <div style="width:100%;margin-top:25px;box-shadow:0 0 5px gray;padding:25px;">
+            <h4>@Html.Display("Comment Topic")</h4>
+            @Html.DisplayFor(i => item.Topic)
+            <hr />
+            @Html.Label("Post Title: ")&nbsp;&nbsp;@Html.DisplayFor(i => item.Post.Title)
+            <hr />
+
+            @Html.Label("Name-Surname: ")&nbsp;&nbsp;@{string adSoyad = item.Member.Name + " " + item.Member.Surname;}@adSoyad
+        </div>
+    }
+}
